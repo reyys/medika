@@ -32,7 +32,7 @@ export default function Home() {
       </Link>
       <div className="text-center">
         <div className="text-semi-blue">This Application for employee self service HR Information System.</div>
-        <a className="text-dark-blue underline font-bold" href="/">Need Help ?</a>
+        <Link className="text-dark-blue underline font-bold" href="/">Need Help ?</Link>
       </div>
     </div>
   )
