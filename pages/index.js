@@ -4,7 +4,7 @@ import React from "react"
 export default function Home() {
   const [hidden, setHidden] = React.useState(false)
   return (
-    <div className="flex flex-col gap-5 px-6 justify-center h-full w-full items-center">
+    <div className="flex flex-col gap-5 px-6 justify-center h-screen w-full items-center">
       <img className="mb-12" src="/images/logo.svg" alt="" />
       <div className="w-full">
         <div>NIK</div>

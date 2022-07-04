@@ -9,7 +9,7 @@ function Menu() {
       {pathname === "/" ? (
         ""
       ) : (
-        <div style={{ bottom: "0" }} className="w-full fixed items-center justify-center bottom-0 left-0 flex gap-5 p-5">
+        <div className="w-full fixed bot-0 gap-5 p-5">
           <div className="flex flex-col items-center">
             {pathname === "/presensi" ? (
               <>
