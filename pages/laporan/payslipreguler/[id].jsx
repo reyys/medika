@@ -22,7 +22,7 @@ function Id() {
       <div className="p-5">
         <div className="text-center">
           <div className="text-[1.25rem] font-bold">PT. KRAKATAU MEDIKA</div>
-          <div>SLIP GAJI {`(${router.query.id.toUpperCase()} 2022)`}</div>
+          <div>SLIP GAJI {`(${router.query.id} 2022)`}</div>
         </div>
         <div className="mt-5 p-5 bg-gray">
           <div className="flex flex-col gap-5">
