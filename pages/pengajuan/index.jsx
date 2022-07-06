@@ -8,19 +8,19 @@ function Index() {
         <div className="font-bold">Pengajuan</div>
         <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
       </div>
-      <div className="p-5 bg-light-blue">
+      <div className="p-5 bg-gray">
         <div className="flex w-full justify-between">
           <div className="font-bold text-dark-blue">Formulir Pengajuan</div>
           <img className="cursor-pointer" src="/images/question.svg" alt="" />
         </div>
         <div className="flex flex-col gap-5 mt-5">
-          <input style={{ background: "transparent" }} className="p-5 border-[1px] border-semi-gray drop-shadow-lg" placeholder="Formulir Izin" />
-          <input className="p-5 border-[1px] border-semi-gray drop-shadow-lg" placeholder="Formulir Cuti" />
-          <input className="p-5 border-[1px] border-semi-gray drop-shadow-lg" placeholder="Formulir Lembur" />
-          <input className="p-5 border-[1px] border-semi-gray drop-shadow-lg" placeholder="Formulir Tukar Dinas" />
+          <input style={{ background: "transparent" }} className="p-5 border-[1px] border-[#4D81AF] rounded-md drop-shadow-lg" placeholder="Formulir Izin" />
+          <input className="p-5 border-[1px] border-[#4D81AF] rounded-md drop-shadow-lg" placeholder="Formulir Cuti" />
+          <input className="p-5 border-[1px] border-[#4D81AF] rounded-md drop-shadow-lg" placeholder="Formulir Lembur" />
+          <input className="p-5 border-[1px] border-[#4D81AF] rounded-md drop-shadow-lg" placeholder="Formulir Tukar Dinas" />
         </div>
       </div>
-      <div className="mt-2 p-5 bg-light-blue pb-24">
+      <div className="mt-2 p-5 bg-gray pb-24">
         <div className="font-bold text-dark-blue">Riwayat Pengajuan</div>
         <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
         <div className="py-5 mt-5 border-b-[1px] border-light-gray w-full">Izin</div>

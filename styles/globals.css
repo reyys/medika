@@ -22,11 +22,21 @@ a {
 }
 
 .custom-shadow {
-  box-shadow: 1px 1px 10px;
+  box-shadow: 0px 0px 20px gray;
 }
 
 select {
   -webkit-appearance: none;
+}
+
+#grow-height {
+  max-height: 30rem;
+  transition: 0.5s max-height ease-out;
+}
+
+#hide-height {
+  max-height: 0;
+  overflow: hidden;
 }
 
 @media only screen and (max-width: 768px) {
