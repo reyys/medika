@@ -46,11 +46,11 @@ function Index() {
     }
     setInterval(async () => {
       canvasRef.current.innerHTML = faceapi.createCanvasFromMedia(videoRef.current);
-      const displaySize = { width: 600, height: 400 };
+      const displaySize = { width: 300, height: 400 };
       faceapi.matchDimensions(canvasRef.current, displaySize);
       const detections = await faceapi.detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions();
       const resizedDetections = faceapi.resizeResults(detections, displaySize);
-      canvasRef.current.getContext("2d").clearRect(0, 0, 600, 400);
+      canvasRef.current.getContext("2d").clearRect(0, 0, 300, 400);
       faceapi.draw.drawDetections(canvasRef.current, resizedDetections);
       faceapi.draw.drawFaceLandmarks(canvasRef.current, resizedDetections);
       faceapi.draw.drawFaceExpressions(canvasRef.current, resizedDetections);
