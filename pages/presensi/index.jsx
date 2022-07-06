@@ -127,8 +127,8 @@ function Index() {
             <td>Jam Masuk</td>
             <td>Jam Keluar</td>
           </tr>
-          <tr>
-            <td className="py-4 border-b-[1px] border-gray">Senin 20 Februari 2022</td>
+          <tr className="border-b-[1px] border-gray">
+            <td className="py-3">Senin 20 Februari 2022</td>
             <td>
               <div className="w-[1rem] h-[1rem] bg-gray rounded-full"></div>
             </td>

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 function DPMK() {
   const router = useRouter();
   return (
-    <div>
+    <div className="h-screen">
       <div className="p-5 flex w-full justify-between items-center bg-gray">
         <div className="flex items-center gap-5">
           <img onClick={() => router.back()} className="cursor-pointer" src="/images/back.svg" alt="" />

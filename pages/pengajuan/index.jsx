@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function Index() {
   return (
-    <div className="w-full">
+    <div className="w-full h-screen sm:h-auto">
       <div className="p-5">
         <div className="font-bold">Pengajuan</div>
         <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
