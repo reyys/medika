@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 function Medical() {
   const router = useRouter();
   return (
-    <div>
+    <div className="h-screen">
       <div className="p-5 bg-gray">
         <div className="flex w-full justify-between items-center">
           <div className="flex items-center gap-5">
