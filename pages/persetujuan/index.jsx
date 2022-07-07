@@ -4,7 +4,7 @@ import React from "react";
 function Persetujuan() {
   const router = useRouter();
   return (
-    <div className="w-full">
+    <div className="w-full h-screen">
       <div className="p-5">
         <div className="flex gap-5 items-center">
           <img onClick={() => router.back()} className="cursor-pointer" src="images/back.svg" alt="" />

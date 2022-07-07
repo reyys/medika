@@ -4,7 +4,7 @@ import Link from "next/link";
 function Notifikasi() {
   const router = useRouter();
   return (
-    <div className="p-5">
+    <div className="p-5 h-screen sm:h-auto">
       <div className="flex items-center gap-5">
         <img onClick={() => router.back()} className="cursor-pointer" src="/images/back.svg" alt="" />
         <div className="font-bold text-[1.25rem]">Notifikasi</div>

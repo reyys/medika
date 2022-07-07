@@ -4,24 +4,22 @@ import RenderPresensi from "./renderPresensi";
 import * as faceapi from "face-api.js";
 
 function Index() {
-  const [initializing, setInitializing] = React.useState(false);
-  const [presensi, setPresensi] = React.useState(false);
+  const [presensi, setPresensi] = React.useState({
+    masuk: false,
+  });
   const videoRef = React.useRef(null);
   const canvasRef = React.useRef(null);
 
   const masukPresensi = () => {
-    setPresensi(false);
-    videoRef.current.pause();
+    setPresensi({ masuk: true });
   };
 
   const handleVerif = () => {
-    setPresensi(true);
-    videoRef.current.play();
+    setPresensi({ masuk: false });
   };
 
   React.useEffect(() => {
     const loadModels = async () => {
-      setInitializing(true);
       Promise.all([
         faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
         faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
@@ -41,9 +39,6 @@ function Index() {
   };
 
   const handleVideoPlay = () => {
-    if (initializing) {
-      setInitializing(false);
-    }
     setInterval(async () => {
       canvasRef.current.innerHTML = faceapi.createCanvasFromMedia(videoRef.current);
       const displaySize = { width: 300, height: 400 };
@@ -59,8 +54,8 @@ function Index() {
 
   return (
     <div>
-      <div className={` ${presensi ? "block" : "hidden"} absolute top-0 left-0 bottom-0 right-0 w-full h-full z-50`} style={{ background: "rgba(0,0,0,0.4)" }}></div>
-      <div className={`${presensi ? "block" : "hidden"} absolute z-[100] top-[50%] left-[50%] flex flex-col justify-center items-center gap-5`} style={{ transform: "translate(-50%,-50%)" }}>
+      <div className={` ${presensi.masuk === true ? "block" : "hidden"} absolute top-0 left-0 bottom-0 right-0 w-full h-full z-50`} style={{ background: "rgba(0,0,0,0.4)" }}></div>
+      <div className={`${presensi.masuk === true ? "block" : "hidden"} absolute z-[100] top-[50%] left-[50%] flex flex-col justify-center items-center gap-5`} style={{ transform: "translate(-50%,-50%)" }}>
         <video onPlay={handleVideoPlay} muted ref={videoRef} width={600} height={400}></video>
         <canvas className="absolute" ref={canvasRef}></canvas>
         <button onClick={() => masukPresensi()} className="relative z-[999] rounded-md bg-dark-blue w-full text-white p-5">
