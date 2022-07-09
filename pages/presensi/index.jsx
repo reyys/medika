@@ -4,19 +4,12 @@ import RenderPresensi from "./renderPresensi";
 import * as faceapi from "face-api.js";
 
 function Index() {
-  const [presensi, setPresensi] = React.useState({
-    masuk: false,
-  });
+  const [presensi, setPresensi] = React.useState(false);
   const videoRef = React.useRef(null);
   const canvasRef = React.useRef(null);
+  const dateContainer = React.useRef(null);
 
-  const masukPresensi = () => {
-    setPresensi({ masuk: true });
-  };
-
-  const handleVerif = () => {
-    setPresensi({ masuk: false });
-  };
+  const [thisDate, setThisDate] = React.useState();
 
   React.useEffect(() => {
     const loadModels = async () => {
@@ -52,10 +45,66 @@ function Index() {
     }, 300);
   };
 
+  //Waktu
+  const currentTime = new Date();
+  const hours = currentTime.getHours();
+
+  React.useEffect(() => {
+    setInterval(() => {
+      let date = new Date();
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let seconds = date.getSeconds();
+      setThisDate(`${hours}:${minutes}:${seconds}`);
+    }, 1000);
+  }, [thisDate]);
+
+  //Date
+  const tanggalIni = currentTime.getDate();
+
+  //DAY
+  const days = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
+  const getDayNumber = currentTime.getDay();
+  const hariIni = days[getDayNumber];
+
+  //MONTH
+  const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+  const getMonthNumber = currentTime.getMonth();
+  const bulanIni = months[getMonthNumber];
+
+  //Year
+  const tahunIni = currentTime.getFullYear();
+
+  //Detect Condition
+  const welcomeDetect = () => {
+    if (hours >= 0 && hours < 10) {
+      return "Selamat Pagi";
+    }
+    if (hours >= 10 && hours <= 15) {
+      return "Selamat Siang";
+    }
+    if (hours > 15 && hours <= 18) {
+      return "Selamat Sore";
+    }
+    if (hours > 18 && hours <= 24) {
+      return "Selamat Malam";
+    }
+  };
+
+  const masukPresensi = () => {
+    setPresensi(false);
+    videoRef.current.pause();
+  };
+
+  const handleVerif = () => {
+    setPresensi(true);
+    videoRef.current.play();
+  };
+
   return (
     <div>
-      <div className={` ${presensi.masuk === true ? "block" : "hidden"} absolute top-0 left-0 bottom-0 right-0 w-full h-full z-50`} style={{ background: "rgba(0,0,0,0.4)" }}></div>
-      <div className={`${presensi.masuk === true ? "block" : "hidden"} absolute z-[100] top-[50%] left-[50%] flex flex-col justify-center items-center gap-5`} style={{ transform: "translate(-50%,-50%)" }}>
+      <div className={` ${presensi === true ? "block" : "hidden"} absolute top-0 left-0 bottom-0 right-0 w-full h-full z-50`} style={{ background: "rgba(0,0,0,0.4)" }}></div>
+      <div className={`${presensi === true ? "block" : "hidden"} absolute z-[100] top-[50%] left-[50%] flex flex-col justify-center items-center gap-5`} style={{ transform: "translate(-50%,-50%)" }}>
         <video onPlay={handleVideoPlay} muted ref={videoRef} width={600} height={400}></video>
         <canvas className="absolute" ref={canvasRef}></canvas>
         <button onClick={() => masukPresensi()} className="relative z-[999] rounded-md bg-dark-blue w-full text-white p-5">
@@ -66,7 +115,7 @@ function Index() {
         <div className="flex gap-5">
           <img src="/images/profileImage.svg" alt="" />
           <div>
-            <div className="font-bold text-darkest-blue text-[1.15rem]">VERONICA YULIAN</div>
+            <div className="font-bold text-darkest-blue text-[1.15rem]">MSEFI.06@GMAIL.COM</div>
             <div>Staff Nurse Radiognastic Pratama</div>
           </div>
         </div>
@@ -75,15 +124,19 @@ function Index() {
         </Link>
       </div>
       <div className="p-5 overflow-hidden bg-dark-blue text-white pb-24 relative">
-        <div className="font-bold text-[1.15rem]">Selamat Pagi</div>
+        <div className="font-bold text-[1.15rem]">{welcomeDetect()}</div>
         <div className="text-gray mt-2">{presensi ? "Anda Sudah Melakukan Presensi Masuk" : "Silahkan Melakukan Presensi Masuk"}</div>
         <img className="absolute right-0 top-[-20%]" src="images/leaf.svg" alt="" />
       </div>
       <div className="p-5 w-[80%] bg-white rounded-md flex items-center justify-between mx-auto translate-y-[-50%] drop-shadow-lg">
         <div>
-          <div className="text-darkest-blue font-bold text-[1.25rem]">Senin 20</div>
-          <div className="text-darkest-blue font-bold text-[1.25rem]">Februari 2022</div>
-          <div>7:30:12</div>
+          <div className="text-darkest-blue font-bold text-[1.25rem]">
+            {hariIni} {tanggalIni}
+          </div>
+          <div className="text-darkest-blue font-bold text-[1.25rem]">
+            {bulanIni} {tahunIni}
+          </div>
+          <div ref={dateContainer}>{thisDate}</div>
         </div>
         <button
           onClick={() => {
