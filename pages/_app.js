@@ -69,7 +69,7 @@ function MyApp({ Component, pageProps }) {
                   <Link href="/laporan">
                     <div className="flex items-center justify-center flex-col cursor-pointer">
                       <img className="w-[3rem] h-[3rem]" src="/images/laporanDark.svg" alt="" />
-                      <div className="text-neutral">Laporan</div>
+                      <div className="text-[#CCCCCC]">Laporan</div>
                     </div>
                   </Link>
                 </>
@@ -90,7 +90,7 @@ function MyApp({ Component, pageProps }) {
                   <Link href="/akun">
                     <div className="flex items-center justify-center flex-col cursor-pointer">
                       <img className="w-[3rem] h-[3rem]" src="/images/akunDark.svg" alt="" />
-                      <div className="text-neutral">Akun</div>
+                      <div className="text-[#CCCCCC]">Akun</div>
                     </div>
                   </Link>
                 </>
