@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-function tukarDinas() {
+function TukarDinas() {
   const route = useRouter();
   return (
     <div className="w-full h-screen flex flex-col">
@@ -36,4 +36,4 @@ function tukarDinas() {
   );
 }
 
-export default tukarDinas;
+export default TukarDinas;
