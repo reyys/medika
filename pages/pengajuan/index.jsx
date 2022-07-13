@@ -4,8 +4,19 @@ import Link from "next/link";
 
 function Index() {
   const router = useRouter();
+  const [height, setHeight] = React.useState({});
+
+  const clickHandler = (e) => {
+    console.log(e.target.id);
+    setHeight((prevState) => {
+      return {
+        ...prevState,
+        [e.target.id]: !prevState[e.target.id],
+      };
+    });
+  };
   return (
-    <div className="w-full h-screen sm:h-auto">
+    <div className="w-full pb-24">
       <div className="p-5">
         <div className="font-bold">Pengajuan</div>
         <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
@@ -35,37 +46,101 @@ function Index() {
       <div className="mt-2 p-5 bg-gray pb-24">
         <div className="font-bold text-dark-blue">Riwayat Pengajuan</div>
         <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        <div className="border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
-          <select placeholder="Pilih jenis cuti" className="outline-none w-full" style={{ background: "transparent" }}>
-            <option>Izin</option>
-            <option>Izin 2</option>
-            <option>Izin 3</option>
-          </select>
+        <div onClick={(e) => clickHandler(e)} id="izin" className="cursor-pointer border-b-[1px] py-5 border-light-gray w-full relative z-50 mt-5 rounded-md">
+          Izin
           <img className="absolute right-[3%] top-[50%] translate-y-[-50%]" src="/images/dropdown.svg" alt="" />
         </div>
-        <div className="border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
-          <select placeholder="Pilih jenis cuti" className="outline-none w-full" style={{ background: "transparent" }}>
-            <option>Cuti</option>
-            <option>Cuti 2</option>
-            <option>Cuti 3</option>
-          </select>
+        <div id={`${height.izin ? "grow-height" : "hide-height"}`}>
+          <div className="flex flex-col gap-5 mt-5">
+            <div className="flex justify-between items-center">
+              <div>Tanggal</div>
+              <div>2022-03-01</div>
+            </div>
+            <div className="flex justify-between items-center">
+              <div>Keterangan</div>
+              <div>Sakit Perut</div>
+            </div>
+            <div className="flex justify-between items-center">
+              <div>Status</div>
+              <div>Disetujui</div>
+            </div>
+          </div>
+        </div>
+        <div onClick={(e) => clickHandler(e)} id="cuti" className="cursor-pointer border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
+          Cuti
           <img className="absolute right-[3%] top-[50%] translate-y-[-50%]" src="/images/dropdown.svg" alt="" />
         </div>
-        <div className="border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
-          <select placeholder="Pilih jenis cuti" className="outline-none w-full" style={{ background: "transparent" }}>
-            <option>Lembur</option>
-            <option>Lembur 2</option>
-            <option>Lembur 3</option>
-          </select>
+        <div id={`${height.cuti ? "grow-height" : "hide-height"}`}>
+          <div className="flex flex-col gap-5 mt-5">
+            <div className="flex justify-between items-center">
+              <div>Tanggal</div>
+              <div>2022-05-28 to 2022-05-29</div>
+            </div>
+            <div className="flex justify-between items-center">
+              <div>Keterangan</div>
+              <div>Keperluan Keluarga</div>
+            </div>
+            <div className="flex justify-between items-center">
+              <div>Status</div>
+              <div>Menunggu</div>
+            </div>
+          </div>
+        </div>
+        <div onClick={(e) => clickHandler(e)} id="lembur" className="cursor-pointer border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
+          Lembur
           <img className="absolute right-[3%] top-[50%] translate-y-[-50%]" src="/images/dropdown.svg" alt="" />
         </div>
-        <div className="border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
-          <select placeholder="Pilih jenis cuti" className="outline-none w-full" style={{ background: "transparent" }}>
-            <option>Tukar Dinas</option>
-            <option>Tukar Dinas 2</option>
-            <option>Tukar Dinas 3</option>
-          </select>
+        <div id={`${height.lembur ? "grow-height" : "hide-height"}`}>
+          <div className="flex flex-col gap-5 mt-5">
+            <div className="flex justify-between items-center">
+              <div>Tanggal</div>
+              <div>2022-04-21</div>
+            </div>
+            <div className="flex justify-between items-center">
+              <div>Waktu</div>
+              <div>20:30 - 21:45</div>
+            </div>
+            <div className="flex justify-between items-center">
+              <div>Tugas</div>
+              <div>Mengcopy berkas lama</div>
+            </div>
+            <div className="flex justify-between items-center">
+              <div>Keterangan</div>
+              <div>Isi Keterangan</div>
+            </div>
+            <div className="flex justify-between items-center">
+              <div>Status</div>
+              <div>Disetujui</div>
+            </div>
+          </div>
+        </div>
+        <div onClick={(e) => clickHandler(e)} id="tukardinas" className="cursor-pointer border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
+          Tukar Dinas
           <img className="absolute right-[3%] top-[50%] translate-y-[-50%]" src="/images/dropdown.svg" alt="" />
+        </div>
+        <div id={`${height.tukardinas ? "grow-height" : "hide-height"}`}>
+          <div className="flex flex-col gap-5 mt-5">
+            <div className="flex justify-between items-center">
+              <div>Tanggal</div>
+              <div>2022-04-21</div>
+            </div>
+            <div className="flex justify-between items-center">
+              <div>Waktu</div>
+              <div>20:30 - 21:45</div>
+            </div>
+            <div className="flex justify-between items-center">
+              <div>Tugas</div>
+              <div>Mengcopy berkas lama</div>
+            </div>
+            <div className="flex justify-between items-center">
+              <div>Keterangan</div>
+              <div>Isi Keterangan</div>
+            </div>
+            <div className="flex justify-between items-center">
+              <div>Status</div>
+              <div>Disetujui</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

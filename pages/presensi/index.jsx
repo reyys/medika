@@ -3,8 +3,7 @@ import React from "react";
 import RenderPresensi from "./renderPresensi";
 import * as faceapi from "face-api.js";
 
-function Index() {
-  const [presensi, setPresensi] = React.useState(false);
+function Index({ presensi, setPresensi }) {
   const videoRef = React.useRef(null);
   const canvasRef = React.useRef(null);
   const dateContainer = React.useRef(null);

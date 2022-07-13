@@ -1,13 +1,16 @@
+import React from 'react';
 import '../styles/globals.css'
 import { useRouter } from "next/router";
 import Link from 'next/link'
 
 function MyApp({ Component, pageProps }) {
   const { pathname } = useRouter();
+  const [presensi, setPresensi] = React.useState(false);
+
   return (
     <div className='flex justify-center items-center'>
       <div className='lg:w-[40%] relative w-full sm:w-[80%] mx-auto bg-white custom-shadow'>
-        <Component {...pageProps}></Component>
+        <Component presensi={presensi} setPresensi={setPresensi} {...pageProps}></Component>
         {/* FIXED MENU */}
         {pathname === "/presensi" || pathname === "/pengajuan" || pathname === "/laporan" || pathname === "/akun"
           ?
