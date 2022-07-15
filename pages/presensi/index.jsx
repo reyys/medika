@@ -1,14 +1,31 @@
 import Link from "next/link";
 import React from "react";
-import RenderPresensi from "./renderPresensi";
 import * as faceapi from "face-api.js";
+import axios from "axios";
+
+const token = typeof window !== "undefined" ? JSON.parse(window.localStorage.getItem("token")) : "";
 
 function Index({ presensi, setPresensi }) {
   const videoRef = React.useRef(null);
   const canvasRef = React.useRef(null);
   const dateContainer = React.useRef(null);
-
   const [thisDate, setThisDate] = React.useState();
+
+  const [presensiData, setPresensiData] = React.useState("");
+
+  React.useEffect(() => {
+    const getData = async () => {
+      if (token !== "") {
+        const res = await axios.get("http://api.waktukerja.com/api/presensi/laporan", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setPresensiData(res.data.data);
+      }
+    };
+    getData();
+  }, [token]);
 
   React.useEffect(() => {
     const loadModels = async () => {
@@ -182,24 +199,29 @@ function Index({ presensi, setPresensi }) {
 
       <div className="p-6">
         <table className="w-full">
-          <tr>
-            <td>Tanggal</td>
-            <td>Ket.</td>
-            <td>Jam Masuk</td>
-            <td>Jam Keluar</td>
-          </tr>
-          <tr className="border-b-[1px] border-gray">
-            <td className="py-3">Senin 20 Februari 2022</td>
-            <td>
-              <div className="w-[1rem] h-[1rem] bg-gray rounded-full"></div>
-            </td>
-            <td>08:00:00</td>
-            <td>- - : - - : - -</td>
-          </tr>
-          <RenderPresensi />
-          <RenderPresensi bg="red" />
-          <RenderPresensi />
-          <RenderPresensi />
+          <tbody>
+            <tr>
+              <td>Tanggal</td>
+              <td>Ket.</td>
+              <td>Jam Masuk</td>
+              <td>Jam Keluar</td>
+            </tr>
+            {presensiData !== "" &&
+              presensiData.map((x) => {
+                return (
+                  <tr className="border-b-[1px] border-gray">
+                    <td className="py-3">{x.precense_date}</td>
+                    <td>
+                      {x.approve_status === 1 && <div className="w-[1rem] h-[1rem] bg-green rounded-full"></div>}
+                      {x.approve_status === 0 && <div className="w-[1rem] h-[1rem] bg-gray rounded-full"></div>}
+                      {x.approve_status === -1 && <div className="w-[1rem] h-[1rem] bg-semi-red rounded-full"></div>}
+                    </td>
+                    <td>{x.checkin}</td>
+                    <td>{x.checkout === null ? "- - : - - : - -" : x.checkout}</td>
+                  </tr>
+                );
+              })}
+          </tbody>
         </table>
         <div className="w-full mt-3 text-semi-blue justify-between flex items-center">
           <div>{`<<`} Sebelumnya</div>

@@ -1,9 +1,27 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import axios from "axios";
+
+const token = typeof window !== "undefined" ? JSON.parse(window.localStorage.getItem("token")) : "";
 
 function Pribadi() {
   const router = useRouter();
+  const [profileData, setProfileData] = React.useState("");
+
+  React.useEffect(() => {
+    const getProfileData = async () => {
+      if (token !== "") {
+        const res = await axios.get("http://api.waktukerja.com/api/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setProfileData(res.data.data);
+      }
+    };
+    getProfileData();
+  }, [token]);
   return (
     <div>
       <div className="p-5 bg-gray">
@@ -23,7 +41,7 @@ function Pribadi() {
       <div className="p-5">
         <div className="flex gap-5 items-center">
           <div className="relative">
-            <img className="w-[10rem]" src="/images/photo.png" alt="" />
+            <img className="w-[10rem]" src={"/images/photo.png"} alt="" />
             <svg className="absolute right-[2%] bottom-[2%] text-[2rem]" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
               <path
                 fill="white"
@@ -35,45 +53,45 @@ function Pribadi() {
           <div className="flex flex-col gap-3 w-full">
             <div>
               <div>NIK</div>
-              <div className="w-full bg-gray p-3 rounded-md">1000221</div>
+              <div className="w-full bg-gray p-3 rounded-md">{profileData.id_nomor}</div>
             </div>
             <div>
               <div>TMB</div>
-              <div className="w-full bg-gray p-3 rounded-md">2005 - 01 -01</div>
+              <div className="w-full bg-gray p-3 rounded-md">{profileData.tmb}</div>
             </div>
           </div>
         </div>
         <div className="mt-3">
           <div>Nama</div>
-          <div className="mt-3 p-5 bg-gray w-full rounded-md">Veronica Yuliana, Amd.Kep</div>
+          <div className="mt-3 p-5 bg-gray w-full rounded-md">{profileData.nama}</div>
         </div>
         <div className="mt-3">
           <div>Tanggal Lahir</div>
-          <div className="mt-3 p-5 bg-gray w-full rounded-md">23-07-1979</div>
+          <div className="mt-3 p-5 bg-gray w-full rounded-md">{profileData.talahir}</div>
         </div>
         <div className="mt-3">
           <div>No. Telepon</div>
-          <div className="mt-3 p-5 bg-gray w-full rounded-md">087771361883</div>
+          <div className="mt-3 p-5 bg-gray w-full rounded-md">{profileData.nomor_telepon}</div>
         </div>
         <div className="mt-3">
           <div>Email</div>
-          <div className="mt-3 p-5 bg-gray w-full rounded-md">veronica_ferdiana@yahoo.co.id</div>
+          <div className="mt-3 p-5 bg-gray w-full rounded-md">{profileData.email}</div>
         </div>
         <div className="mt-3">
           <div>NPWP</div>
-          <div className="mt-3 p-5 bg-gray w-full rounded-md">12.123.123.1.123.000</div>
+          <div className="mt-3 p-5 bg-gray w-full rounded-md">{profileData.NPWP}</div>
         </div>
-        <div className="mt-3">
+        {/* <div className="mt-3">
           <div>PTKP</div>
           <div className="mt-3 p-5 bg-gray w-full rounded-md">K.2</div>
         </div>
         <div className="mt-3">
           <div>Jamsostek</div>
           <div className="mt-3 p-5 bg-gray w-full rounded-md">00K12345678</div>
-        </div>
+        </div> */}
         <div className="mt-3 pb-24">
           <div>Jabatan</div>
-          <div className="mt-3 p-5 bg-gray w-full rounded-md">Staff Nurse Radiodiagnostic Pratama</div>
+          <div className="mt-3 p-5 bg-gray w-full rounded-md">{profileData.jabatan}</div>
         </div>
       </div>
     </div>

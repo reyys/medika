@@ -30,7 +30,7 @@ select {
 }
 
 #grow-height {
-  max-height: 30rem;
+  max-height: auto;
   transition: 0.5s max-height ease-out;
 }
 

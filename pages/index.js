@@ -1,15 +1,22 @@
 import Link from "next/link"
 import React from "react"
 import { useRouter } from "next/router"
+import axios from 'axios'
 
 export default function Home() {
   const router = useRouter()
+
+  const [token, setToken] = React.useState("")
+
+  React.useEffect(() => {
+    window.localStorage.setItem('token', JSON.stringify(token))
+  }, [token])
+
+
   const [hidden, setHidden] = React.useState(false)
 
   const [error, setError] = React.useState(false)
-
-  const [email] = React.useState("msefi.06@gmail.com")
-  const [password] = React.useState("password")
+  const [file, setFile] = React.useState()
 
   const [data, setData] = React.useState(
     { email: "", password: "" }
@@ -24,13 +31,40 @@ export default function Home() {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (data.email === email && data.password === password) {
-      router.push('/presensi')
-    } else {
+    try {
+      if (data.email !== "" && data.password !== "") {
+        const res = await axios({
+          method: "post",
+          url: "http://api.waktukerja.com/api/auth/login",
+          data: {
+            "company_code": "89EE21",
+            "email": data.email,
+            "password": data.password,
+            "face_file": file
+          },
+          headers: { "Content-Type": "multipart/form-data" }
+        })
+
+        if (!res.data.token) {
+          setError(true)
+          return
+        } else {
+          setToken(res.data.token)
+          setData({ email: "", password: "" })
+          setFile("")
+          router.push('/presensi')
+        }
+
+
+      } else {
+        setError(true)
+      }
+    } catch (error) {
       setError(true)
     }
+
   }
 
   return (
@@ -40,7 +74,7 @@ export default function Home() {
         <div><img src="/images/warning.svg" /></div>
         <div>Username or Password is invalid</div>
       </div>
-      <form className="w-full flex flex-col gap-5" onSubmit={e => handleSubmit(e)}>
+      <form encType="multipart/form-data" method="POST" action="http://api.waktukerja.com/api" className="w-full flex flex-col gap-5" onSubmit={e => handleSubmit(e)}>
         <div className="w-full">
           <div>NIK</div>
           <input name="email" onChange={e => handleChange(e)} className="w-full bg-light-blue p-3 px-5" type='' placeholder="Input NIK" />
@@ -56,6 +90,9 @@ export default function Home() {
                 <img onClick={() => setHidden(true)} className="absolute top-[50%] right-[5%] translate-y-[-50%]" src="/images/hidden.svg" alt="" />
             }
           </div>
+        </div>
+        <div>
+          <input onChange={(e) => setFile(e.target.files[0])} type="file"></input>
         </div>
         <div className="w-full flex justify-end">
           <div className="w-fit cursor-pointer text-dark-blue">
