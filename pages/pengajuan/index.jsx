@@ -96,7 +96,7 @@ function Index() {
             izinData.map((x) => {
               return (
                 <>
-                  <div className="flex flex-col gap-5 mt-5 border-b-[1px] border-light-gray py-5">
+                  <div key={x.id} className="flex flex-col gap-5 mt-5 border-b-[1px] border-light-gray py-5">
                     <div className="flex justify-between items-center">
                       <div>Tanggal</div>
                       <div>{x.permit_date}</div>
@@ -123,7 +123,7 @@ function Index() {
             cutiData.map((x) => {
               return (
                 <>
-                  <div className="flex flex-col gap-5 mt-5 border-b-[1px] border-light-gray py-5">
+                  <div key={x.id} className="flex flex-col gap-5 mt-5 border-b-[1px] border-light-gray py-5">
                     <div className="flex justify-between items-center">
                       <div>Tanggal</div>
                       <div>
@@ -152,7 +152,7 @@ function Index() {
             lemburData.map((x) => {
               return (
                 <>
-                  <div className="flex flex-col gap-5 mt-5 border-b-[1px] border-light-gray py-5">
+                  <div key={x.id} className="flex flex-col gap-5 mt-5 border-b-[1px] border-light-gray py-5">
                     <div className="flex justify-between items-center">
                       <div>Tanggal</div>
                       <div>{x.overtime_date}</div>

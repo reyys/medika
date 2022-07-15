@@ -209,7 +209,7 @@ function Index({ presensi, setPresensi }) {
             {presensiData !== "" &&
               presensiData.map((x) => {
                 return (
-                  <tr className="border-b-[1px] border-gray">
+                  <tr key={x.id} className="border-b-[1px] border-gray">
                     <td className="py-3">{x.precense_date}</td>
                     <td>
                       {x.approve_status === 1 && <div className="w-[1rem] h-[1rem] bg-green rounded-full"></div>}
