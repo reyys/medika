@@ -1,13 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import axios from "axios";
 
 function index() {
   return (
     <div>
       <div className="p-5">
         <div className="text-[1.25rem] font-bold">Akun</div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
       </div>
       <div className="p-5 bg-gray">
         <div className="font-semibold mb-4">Profil Karyawan</div>
@@ -29,7 +28,7 @@ function index() {
         </div>
         <div className="flex items-center py-3 border-b-[1px] border-light-gray gap-5">
           <img src="images/kesehatan.svg" alt="" />
-          <div>Kesehatan</div>
+          <div>Alamat</div>
         </div>
         <div className="flex items-center py-3 border-b-[1px] border-light-gray gap-5">
           <img src="images/pengalaman.svg" alt="" />

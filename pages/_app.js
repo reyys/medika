@@ -6,11 +6,13 @@ import Link from 'next/link'
 function MyApp({ Component, pageProps }) {
   const { pathname } = useRouter();
   const [presensi, setPresensi] = React.useState(false);
+  const [oncam, setOncam] = React.useState(false)
+  const [hide, setHide] = React.useState(false)
 
   return (
     <div className='flex justify-center items-center'>
       <div className='lg:w-[40%] relative w-full sm:w-[80%] mx-auto bg-white custom-shadow'>
-        <Component presensi={presensi} setPresensi={setPresensi} {...pageProps}></Component>
+        <Component oncam={oncam} setOncam={setOncam} hide={hide} setHide={setHide} presensi={presensi} setPresensi={setPresensi} {...pageProps}></Component>
         {/* FIXED MENU */}
         {pathname === "/presensi" || pathname === "/pengajuan" || pathname === "/laporan" || pathname === "/akun"
           ?

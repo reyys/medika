@@ -2,16 +2,17 @@ import Link from "next/link";
 import React from "react";
 import * as faceapi from "face-api.js";
 import axios from "axios";
-
-const token = typeof window !== "undefined" ? JSON.parse(window.localStorage.getItem("token")) : "";
+import Image from "next/image";
 
 function Index({ presensi, setPresensi }) {
+  const token = typeof window !== "undefined" ? JSON.parse(window.localStorage.getItem("token")) : "";
   const videoRef = React.useRef(null);
   const canvasRef = React.useRef(null);
   const dateContainer = React.useRef(null);
   const [thisDate, setThisDate] = React.useState();
 
   const [presensiData, setPresensiData] = React.useState("");
+  const [profileData, setProfileData] = React.useState("");
 
   React.useEffect(() => {
     const getData = async () => {
@@ -28,6 +29,20 @@ function Index({ presensi, setPresensi }) {
   }, [token]);
 
   React.useEffect(() => {
+    const getProfileData = async () => {
+      if (token !== "") {
+        const res = await axios.get("http://api.waktukerja.com/api/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setProfileData(res.data.data);
+      }
+    };
+    getProfileData();
+  }, [token]);
+
+  React.useEffect(() => {
     const loadModels = async () => {
       Promise.all([
         faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
@@ -40,11 +55,17 @@ function Index({ presensi, setPresensi }) {
   }, []);
 
   const startVideo = async () => {
-    navigator.getUserMedia(
-      { video: {} },
-      (stream) => (videoRef.current.srcObject = stream),
-      (err) => console.log(err)
-    );
+    // await navigator.getUserMedia({ video: {} }.then((stream) => (videoRef.current.srcObject = stream)).catch((err) => console.log(err)));
+    await navigator.mediaDevices
+      .getUserMedia({
+        video: true,
+      })
+      .then((stream) => {
+        let video = videoRef.current;
+        video.srcObject = stream;
+        video.play();
+      })
+      .catch((err) => console.log(err));
   };
 
   const startAgain = () => {
@@ -63,7 +84,7 @@ function Index({ presensi, setPresensi }) {
       faceapi.draw.drawDetections(canvasRef.current, resizedDetections);
       faceapi.draw.drawFaceLandmarks(canvasRef.current, resizedDetections);
       faceapi.draw.drawFaceExpressions(canvasRef.current, resizedDetections);
-      if (detections[0].alignedRect.score > 0.8) {
+      if (detections[0].alignedRect && detections[0].alignedRect.score > 0.8) {
         videoRef.current.pause();
         clearInterval(handleVideoPlay);
       }
@@ -143,30 +164,29 @@ function Index({ presensi, setPresensi }) {
       </div>
       <div className="w-full p-3 flex items-center justify-between px-5">
         <div className="flex gap-5">
-          <img src="/images/profileImage.svg" alt="" />
+          <Image width={50} height={50} src="/images/profileImage.svg" alt="" />
           <div>
-            <div className="font-bold text-darkest-blue text-[1.15rem]">MSEFI.06@GMAIL.COM</div>
+            <div className="font-bold text-darkest-blue text-[1.15rem]">{profileData.nama}</div>
             <div>Staff Nurse Radiognastic Pratama</div>
           </div>
         </div>
         <Link href="/notifikasi">
-          <img className="cursor-pointer" src="/images/notif.svg" alt="" />
+          <Image width={30} height={30} className="cursor-pointer" src="/images/notif.svg" alt="" />
         </Link>
       </div>
       <div className="p-5 overflow-hidden bg-dark-blue text-white pb-24 relative">
-        <div className="font-bold text-[1.15rem]">{welcomeDetect()}</div>
+        <div className="font-bold text-[1.05rem]">{welcomeDetect()}</div>
         <div className="text-gray mt-2">{presensi ? "Anda Sudah Melakukan Presensi Masuk" : "Silahkan Melakukan Presensi Masuk"}</div>
         <img className="absolute right-0 top-[-20%]" src="images/leaf.svg" alt="" />
       </div>
       <div className="p-5 w-[80%] bg-white rounded-md flex items-center justify-between mx-auto translate-y-[-50%] drop-shadow-lg">
         <div>
-          <div className="text-darkest-blue font-bold text-[1.25rem]">
-            {hariIni} {tanggalIni}
+          <div className="text-darkest-blue font-bold">
+            {hariIni} <span ref={dateContainer}>{thisDate}</span>
           </div>
           <div className="text-darkest-blue font-bold text-[1.25rem]">
-            {bulanIni} {tahunIni}
+            {tanggalIni} {bulanIni} {tahunIni}
           </div>
-          <div ref={dateContainer}>{thisDate}</div>
         </div>
         <button
           onClick={() => {

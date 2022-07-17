@@ -2,9 +2,10 @@ import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
+import Image from "next/image";
 
-const token = typeof window !== "undefined" ? JSON.parse(window.localStorage.getItem("token")) : "";
 function Index() {
+  const token = typeof window !== "undefined" ? JSON.parse(window.localStorage.getItem("token")) : "";
   const router = useRouter();
   const [height, setHeight] = React.useState({});
   const [lemburData, setLemburData] = React.useState({});
@@ -60,35 +61,35 @@ function Index() {
     <div className="w-full pb-24">
       <div className="p-5">
         <div className="font-bold">Pengajuan</div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
       </div>
       <div className="p-5 bg-gray">
         <div className="flex w-full justify-between">
-          <div className="font-bold text-dark-blue">Formulir Pengajuan</div>
-          <img className="cursor-pointer" src="/images/question.svg" alt="" />
+          <div className="font-bold text-dark-blue text-[1.1rem]">Pengajuan Waktu Kerja</div>
+          <Image width={20} height={20} className="cursor-pointer" src="/images/question.svg" alt="" />
         </div>
         <div className="flex flex-col gap-5 mt-5">
           <Link href="/pengajuan/izin">
-            <div style={{ background: "transparent" }} className="cursor-pointer p-5 border-[1px] border-[#4D81AF] rounded-md drop-shadow-lg">
-              Formulir Izin
+            <div style={{ background: "transparent" }} className="cursor-pointer p-5 border-[1px] border-[#4D81AF] rounded-md drop-shadow-lg font-semibold">
+              Formulir Pengajuan Izin
             </div>
           </Link>
           <Link href="/pengajuan/cuti">
-            <div className="cursor-pointer p-5 border-[1px] border-[#4D81AF] rounded-md drop-shadow-lg">Formulir Cuti</div>
+            <div className="cursor-pointer p-5 border-[1px] border-[#4D81AF] rounded-md drop-shadow-lg font-semibold">Formulir Pengajuan Cuti</div>
           </Link>
           <Link href="/pengajuan/lembur">
-            <div className="cursor-pointer p-5 border-[1px] border-[#4D81AF] rounded-md drop-shadow-lg">Formulir Lembur</div>
+            <div className="cursor-pointer p-5 border-[1px] border-[#4D81AF] rounded-md drop-shadow-lg font-semibold">Formulir Pengajuan Lembur</div>
           </Link>
           <Link href="/pengajuan/tukardinas">
-            <div className="cursor-pointer p-5 border-[1px] border-[#4D81AF] rounded-md drop-shadow-lg">Formulir Tukar Dinas</div>
+            <div className="cursor-pointer p-5 border-[1px] border-[#4D81AF] rounded-md drop-shadow-lg font-semibold">Formulir Pengajuan Tukar Dinas</div>
           </Link>
         </div>
       </div>
       <div className="mt-2 p-5 bg-gray pb-24">
-        <div className="font-bold text-dark-blue">Riwayat Pengajuan</div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        <div onClick={(e) => clickHandler(e)} id="izin" className="cursor-pointer border-b-[1px] py-5 border-light-gray w-full relative z-50 mt-5 rounded-md">
-          Izin
+        <div className="font-bold text-dark-blue text-[1.1rem]">Riwayat Pengajuan</div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+        <div onClick={(e) => clickHandler(e)} id="izin" className="cursor-pointer font-semibold border-b-[1px] py-5 border-light-gray w-full relative z-50 mt-5 rounded-md">
+          Data Riwayat Izin
           <img className="absolute right-[3%] top-[50%] translate-y-[-50%]" src="/images/dropdown.svg" alt="" />
         </div>
         <div id={`${height.izin ? "grow-height" : "hide-height"}`}>
@@ -114,8 +115,8 @@ function Index() {
               );
             })}
         </div>
-        <div onClick={(e) => clickHandler(e)} id="cuti" className="cursor-pointer border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
-          Cuti
+        <div onClick={(e) => clickHandler(e)} id="cuti" className="cursor-pointer font-semibold border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
+          Data Riwayat Cuti
           <img className="absolute right-[3%] top-[50%] translate-y-[-50%]" src="/images/dropdown.svg" alt="" />
         </div>
         <div id={`${height.cuti ? "grow-height" : "hide-height"}`}>
@@ -143,8 +144,8 @@ function Index() {
               );
             })}
         </div>
-        <div onClick={(e) => clickHandler(e)} id="lembur" className="cursor-pointer border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
-          Lembur
+        <div onClick={(e) => clickHandler(e)} id="lembur" className="cursor-pointer font-semibold border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
+          Data Riwayat Lembur
           <img className="absolute right-[3%] top-[50%] translate-y-[-50%]" src="/images/dropdown.svg" alt="" />
         </div>
         <div id={`${height.lembur ? "grow-height" : "hide-height"}`}>
@@ -180,8 +181,8 @@ function Index() {
               );
             })}
         </div>
-        <div onClick={(e) => clickHandler(e)} id="tukardinas" className="cursor-pointer border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
-          Tukar Dinas
+        <div onClick={(e) => clickHandler(e)} id="tukardinas" className="cursor-pointer font-semibold border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
+          Data Riwayat Tukar Dinas
           <img className="absolute right-[3%] top-[50%] translate-y-[-50%]" src="/images/dropdown.svg" alt="" />
         </div>
         <div id={`${height.tukardinas ? "grow-height" : "hide-height"}`}>
