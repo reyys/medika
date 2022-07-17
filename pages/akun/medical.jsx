@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 function Medical() {
   const router = useRouter();
@@ -8,13 +9,13 @@ function Medical() {
       <div className="p-5 bg-gray">
         <div className="flex w-full justify-between items-center">
           <div className="flex items-center gap-5">
-            <img onClick={() => router.back()} className="cursor-pointer" src="/images/back.svg" alt="" />
+            <Image width={25} height={25} onClick={() => router.back()} className="cursor-pointer" src="/images/back.svg" alt="" />
             <div>
               <div className="text-[1.25rem] font-bold">Medical Checkup</div>
               <div>Lorem Ipsum Dolor</div>
             </div>
           </div>
-          <img src="/images/question.svg" alt="" />
+          <Image width={25} height={25} src="/images/question.svg" alt="" />
         </div>
       </div>
       <div className="p-5">

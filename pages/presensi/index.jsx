@@ -8,11 +8,7 @@ function Index({ presensi, setPresensi }) {
   const token = typeof window !== "undefined" ? JSON.parse(window.localStorage.getItem("token")) : "";
   const videoRef = React.useRef(null);
   const canvasRef = React.useRef(null);
-  const dateContainer = React.useRef(null);
-  const [thisDate, setThisDate] = React.useState();
-
   const [presensiData, setPresensiData] = React.useState("");
-  const [profileData, setProfileData] = React.useState("");
 
   React.useEffect(() => {
     const getData = async () => {
@@ -26,20 +22,6 @@ function Index({ presensi, setPresensi }) {
       }
     };
     getData();
-  }, [token]);
-
-  React.useEffect(() => {
-    const getProfileData = async () => {
-      if (token !== "") {
-        const res = await axios.get("http://api.waktukerja.com/api/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setProfileData(res.data.data);
-      }
-    };
-    getProfileData();
   }, [token]);
 
   React.useEffect(() => {
@@ -84,26 +66,17 @@ function Index({ presensi, setPresensi }) {
       faceapi.draw.drawDetections(canvasRef.current, resizedDetections);
       faceapi.draw.drawFaceLandmarks(canvasRef.current, resizedDetections);
       faceapi.draw.drawFaceExpressions(canvasRef.current, resizedDetections);
-      if (detections[0].alignedRect && detections[0].alignedRect.score > 0.8) {
+      if (detections[0].alignedRect !== "undefined" && detections[0].alignedRect.score > 0.8) {
         videoRef.current.pause();
         clearInterval(handleVideoPlay);
       }
-    }, 300);
+    }, 1000);
   };
 
   //Waktu
   const currentTime = new Date();
   const hours = currentTime.getHours();
-
-  React.useEffect(() => {
-    setInterval(() => {
-      let date = new Date();
-      let hours = date.getHours();
-      let minutes = date.getMinutes();
-      let seconds = date.getSeconds();
-      setThisDate(`${hours}:${minutes}:${seconds}`);
-    }, 1000);
-  }, [thisDate]);
+  const minutes = currentTime.getMinutes();
 
   //Date
   const tanggalIni = currentTime.getDate();
@@ -139,19 +112,18 @@ function Index({ presensi, setPresensi }) {
 
   const masukPresensi = () => {
     setPresensi(false);
-    videoRef.current.pause();
   };
 
   const handleVerif = () => {
     setPresensi(true);
-    videoRef.current.play();
+    handleVideoPlay();
   };
 
   return (
     <div>
       <div className={` ${presensi === true ? "block" : "hidden"} absolute top-0 left-0 bottom-0 right-0 w-full h-full z-50`} style={{ background: "rgba(0,0,0,0.4)" }}></div>
       <div className={`${presensi === true ? "block" : "hidden"} absolute z-[100] top-[50%] left-[50%] flex flex-col justify-center items-center gap-5`} style={{ transform: "translate(-50%,-50%)" }}>
-        <video onPlay={handleVideoPlay} muted ref={videoRef}></video>
+        <video muted ref={videoRef}></video>
         <canvas className="absolute" ref={canvasRef}></canvas>
         <div className="flex gap-5 items-center w-full">
           <button onClick={() => startAgain()} className="cursor-pointer relative z-[999] rounded-md bg-light-gray w-full text-black p-5">
@@ -166,7 +138,7 @@ function Index({ presensi, setPresensi }) {
         <div className="flex gap-5">
           <Image width={50} height={50} src="/images/profileImage.svg" alt="" />
           <div>
-            <div className="font-bold text-darkest-blue text-[1.15rem]">{profileData.nama}</div>
+            <div className="font-bold text-darkest-blue text-[1.15rem]">Moh Sefi</div>
             <div>Staff Nurse Radiognastic Pratama</div>
           </div>
         </div>
@@ -177,12 +149,14 @@ function Index({ presensi, setPresensi }) {
       <div className="p-5 overflow-hidden bg-dark-blue text-white pb-24 relative">
         <div className="font-bold text-[1.05rem]">{welcomeDetect()}</div>
         <div className="text-gray mt-2">{presensi ? "Anda Sudah Melakukan Presensi Masuk" : "Silahkan Melakukan Presensi Masuk"}</div>
-        <img className="absolute right-0 top-[-20%]" src="images/leaf.svg" alt="" />
+        <div className="absolute right-0 top-[-20%]">
+          <Image width={150} height={150} src="/images/leaf.svg" alt="" />
+        </div>
       </div>
       <div className="p-5 w-[80%] bg-white rounded-md flex items-center justify-between mx-auto translate-y-[-50%] drop-shadow-lg">
         <div>
           <div className="text-darkest-blue font-bold">
-            {hariIni} <span ref={dateContainer}>{thisDate}</span>
+            {hariIni} {hours}:{minutes}
           </div>
           <div className="text-darkest-blue font-bold text-[1.25rem]">
             {tanggalIni} {bulanIni} {tahunIni}
@@ -194,7 +168,7 @@ function Index({ presensi, setPresensi }) {
           }}
           className="flex items-center p-3 gap-5 bg-dark-blue"
         >
-          <img src="/images/bellMasuk.svg" />
+          <Image width={20} height={20} alt="" src="/images/bellMasuk.svg" />
           <div className="text-[#ffffff]">
             {presensi ? (
               <div className="flex items-center gap-5">
@@ -212,8 +186,8 @@ function Index({ presensi, setPresensi }) {
           <div className="font-bold text-dark-blue text-[1.25rem]">Riwayat Presensi</div>
           <div>Cek Riwayat Kehadiranmu</div>
         </div>
-        <div className="p-2 rounded-md bg-dark-blue">
-          <img src="/images/searchIcon.svg" alt="" />
+        <div className="p-2 rounded-md bg-dark-blue flex items-center justify-center">
+          <Image width={20} height={20} src="/images/searchIcon.svg" alt="" />
         </div>
       </div>
 

@@ -2,6 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
+import Image from "next/image";
 
 function Pribadi({ oncam, setOncam, hide, setHide }) {
   const token = typeof window !== "undefined" ? JSON.parse(window.localStorage.getItem("token")) : "";
@@ -70,14 +71,14 @@ function Pribadi({ oncam, setOncam, hide, setHide }) {
       <div className="p-5 bg-gray">
         <div className="flex w-full justify-between items-center">
           <div className="flex items-center gap-5">
-            <img onClick={() => router.back()} className="cursor-pointer" src="/images/back.svg" alt="" />
+            <Image width={25} height={25} onClick={() => router.back()} className="cursor-pointer" src="/images/back.svg" alt="" />
             <div>
               <div className="text-[1.25rem] font-bold">Profil Karyawan</div>
               <div>Pribadi</div>
             </div>
           </div>
           <Link href="/akun/edit">
-            <img className="cursor-pointer" src="/images/edit.svg" alt="" />
+            <Image width={25} height={25} className="cursor-pointer" src="/images/edit.svg" alt="" />
           </Link>
         </div>
       </div>
@@ -85,7 +86,7 @@ function Pribadi({ oncam, setOncam, hide, setHide }) {
         <div className="flex gap-5 items-center">
           <div className="relative">
             <canvas className={`${hide ? "flex" : "hidden"} rounded-md`} ref={photoRef}></canvas>
-            {!hide && <img className="w-[10rem]" src={"/images/photo.png"} alt="" />}
+            {!hide && <Image width={120} height={150} src={"/images/photo.png"} alt="" />}
             <svg
               onClick={() => editHandler()}
               className="cursor-pointer absolute right-[2%] bottom-[2%] text-[2rem]"

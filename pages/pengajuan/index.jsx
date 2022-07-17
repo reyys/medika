@@ -90,7 +90,9 @@ function Index() {
         <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
         <div onClick={(e) => clickHandler(e)} id="izin" className="cursor-pointer font-semibold border-b-[1px] py-5 border-light-gray w-full relative z-50 mt-5 rounded-md">
           Data Riwayat Izin
-          <img className="absolute right-[3%] top-[50%] translate-y-[-50%]" src="/images/dropdown.svg" alt="" />
+          <div className="absolute right-[3%] top-[50%] translate-y-[-50%]">
+            <Image width={25} height={25} src="/images/dropdown.svg" alt="" />
+          </div>
         </div>
         <div id={`${height.izin ? "grow-height" : "hide-height"}`}>
           {izinData.length > 0 &&
@@ -117,7 +119,9 @@ function Index() {
         </div>
         <div onClick={(e) => clickHandler(e)} id="cuti" className="cursor-pointer font-semibold border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
           Data Riwayat Cuti
-          <img className="absolute right-[3%] top-[50%] translate-y-[-50%]" src="/images/dropdown.svg" alt="" />
+          <div className="absolute right-[3%] top-[50%] translate-y-[-50%]">
+            <Image width={25} height={25} src="/images/dropdown.svg" alt="" />
+          </div>
         </div>
         <div id={`${height.cuti ? "grow-height" : "hide-height"}`}>
           {cutiData.length > 0 &&
@@ -146,7 +150,9 @@ function Index() {
         </div>
         <div onClick={(e) => clickHandler(e)} id="lembur" className="cursor-pointer font-semibold border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
           Data Riwayat Lembur
-          <img className="absolute right-[3%] top-[50%] translate-y-[-50%]" src="/images/dropdown.svg" alt="" />
+          <div className="absolute right-[3%] top-[50%] translate-y-[-50%]">
+            <Image width={25} height={25} src="/images/dropdown.svg" alt="" />
+          </div>
         </div>
         <div id={`${height.lembur ? "grow-height" : "hide-height"}`}>
           {lemburData.length > 0 &&
@@ -183,7 +189,9 @@ function Index() {
         </div>
         <div onClick={(e) => clickHandler(e)} id="tukardinas" className="cursor-pointer font-semibold border-b-[1px] py-5 border-light-gray w-full relative mt-5 rounded-md">
           Data Riwayat Tukar Dinas
-          <img className="absolute right-[3%] top-[50%] translate-y-[-50%]" src="/images/dropdown.svg" alt="" />
+          <div className="absolute right-[3%] top-[50%] translate-y-[-50%]">
+            <Image width={25} height={25} src="/images/dropdown.svg" alt="" />
+          </div>
         </div>
         <div id={`${height.tukardinas ? "grow-height" : "hide-height"}`}>
           <div className="flex flex-col gap-5 mt-5">

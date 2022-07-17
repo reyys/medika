@@ -2,6 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
+import Image from "next/image";
 
 function Edit() {
   const router = useRouter();
@@ -52,14 +53,14 @@ function Edit() {
       <div className="p-5 bg-gray">
         <div className="flex w-full justify-between items-center">
           <div className="flex items-center gap-5">
-            <img onClick={() => router.back()} className="cursor-pointer" src="/images/back.svg" alt="" />
+            <Image width={25} height={25} onClick={() => router.back()} className="cursor-pointer" src="/images/back.svg" alt="" />
             <div>
               <div className="text-[1.25rem] font-bold">Profil Karyawan</div>
               <div>Edit</div>
             </div>
           </div>
           <Link href="/akun/edit">
-            <img className="cursor-pointer" src="/images/edit.svg" alt="" />
+            <Image width={25} height={25} className="cursor-pointer" src="/images/edit.svg" alt="" />
           </Link>
         </div>
       </div>

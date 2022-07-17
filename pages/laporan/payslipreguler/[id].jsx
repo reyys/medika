@@ -1,22 +1,23 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 function Id() {
   const router = useRouter();
   const [height, setHeight] = React.useState(false);
   console.log(router.query);
   return (
-    <div className="pb-64">
+    <div className="pb-24">
       <div className="p-5 flex w-full justify-between items-center bg-gray">
         <div className="flex items-center gap-5">
-          <img onClick={() => router.back()} className="cursor-pointer" src="/images/back.svg" alt="" />
+          <Image width={25} height={25} onClick={() => router.back()} className="cursor-pointer" src="/images/back.svg" alt="" />
           <div>
             <div className="text-dark-blue font-bold">Payslip Reguler</div>
             <div className="text-[#808080]">Lorem Ipsum Dolor</div>
           </div>
         </div>
         <div>
-          <img src="/images/question.svg" alt="" />
+          <Image width={25} height={25} src="/images/question.svg" alt="" />
         </div>
       </div>
       <div className="p-5">
@@ -81,7 +82,7 @@ function Id() {
             <div>B. Tunjangan</div>
             <div className="flex gap-5 items-center">
               <div>Rp 3.983.663</div>
-              <img src="/images/dropdown.svg" alt="" />
+              <Image width={25} height={25} src="/images/dropdown.svg" alt="" />
             </div>
           </div>
           <div className="" id={`${height ? "grow-height" : "hide-height"}`}>
@@ -133,7 +134,7 @@ function Id() {
             <div>C. Potongan</div>
             <div className="flex items-center gap-5">
               <div>Rp 3.983.663</div>
-              <img src="/images/dropdown.svg" alt="" />
+              <Image width={25} height={25} src="/images/dropdown.svg" alt="" />
             </div>
           </div>
         </div>
@@ -143,7 +144,7 @@ function Id() {
             <div>D. Iuran</div>
             <div className="flex items-center gap-5">
               <div>Rp 3.983.663</div>
-              <img src="/images/dropdown.svg" alt="" />
+              <Image width={25} height={25} src="/images/dropdown.svg" alt="" />
             </div>
           </div>
         </div>
@@ -153,7 +154,7 @@ function Id() {
             <div>E. Natura</div>
             <div className="flex items-center gap-5">
               <div>Rp 3.983.663</div>
-              <img src="/images/dropdown.svg" alt="" />
+              <Image width={25} height={25} src="/images/dropdown.svg" alt="" />
             </div>
           </div>
         </div>
@@ -163,7 +164,7 @@ function Id() {
             <div>F. Diterima</div>
             <div className="flex items-center gap-5">
               <div>Rp 3.983.663</div>
-              <img src="/images/dropdown.svg" alt="" />
+              <Image width={25} height={25} src="/images/dropdown.svg" alt="" />
             </div>
           </div>
         </div>

@@ -1,12 +1,13 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Image from "next/image";
 function Notifikasi() {
   const router = useRouter();
   return (
     <div className="p-5 h-screen sm:h-auto">
       <div className="flex items-center gap-5">
-        <img onClick={() => router.back()} className="cursor-pointer" src="/images/back.svg" alt="" />
+        <Image width={25} height={25} onClick={() => router.back()} className="cursor-pointer" src="/images/back.svg" alt="" />
         <div className="font-bold text-[1.25rem]">Notifikasi</div>
       </div>
       <div className="p-5 overflow-x-auto max-h-full flex gap-5 items-center">
@@ -19,7 +20,7 @@ function Notifikasi() {
       </div>
       <div className="p-5">
         <div className="flex items-center gap-5">
-          <img src="images/pengumuman.svg" alt="" />
+          <Image width={25} height={25} src="/images/pengumuman.svg" alt="" />
           <div className="font-semibold">Pengumuman</div>
         </div>
       </div>
@@ -34,7 +35,7 @@ function Notifikasi() {
       {/* Pengajuan Anda  */}
       <div className="p-5">
         <div className="flex items-center gap-5">
-          <img src="images/pengajuanAnda.svg" alt="" />
+          <Image width={25} height={25} src="/images/pengajuanAnda.svg" alt="" />
           <div className="font-semibold">Pengajuan Anda</div>
         </div>
       </div>
@@ -48,7 +49,7 @@ function Notifikasi() {
       </div>
       <div className="p-5">
         <div className="flex items-center gap-5">
-          <img src="images/persetujuan.svg" alt="" />
+          <Image width={25} height={25} src="/images/persetujuan.svg" alt="" />
           <div className="font-semibold">Perlu Persetujuan</div>
         </div>
       </div>

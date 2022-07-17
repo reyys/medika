@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
+import Image from "next/image";
 
 function Persetujuan() {
   const router = useRouter();
@@ -7,7 +8,7 @@ function Persetujuan() {
     <div className="w-full h-screen">
       <div className="p-5">
         <div className="flex gap-5 items-center">
-          <img onClick={() => router.back()} className="cursor-pointer" src="images/back.svg" alt="" />
+          <Image width={25} height={25} onClick={() => router.back()} className="cursor-pointer" src="images/back.svg" alt="" />
           <div>
             <div className="font-bold text-[1.25rem]">Perlu Persetujuan</div>
             <div>Pengajuan Tukar Dinas</div>
@@ -17,7 +18,7 @@ function Persetujuan() {
       <div className="p-5 bg-light-blue">
         <div className="text-semi-blue">Status Pengajuan</div>
         <div className="flex gap-3 items-center p-2 mt-3 w-full rounded-full border-[1px] border-semi-red bg-light-red">
-          <img src="images/warning.svg" alt="" />
+          <Image width={25} height={25} src="images/warning.svg" alt="" />
           <div className="text-[#4F4F4F]">Permintaan Tukar Dinas sedang menunggu untuk disetujui</div>
         </div>
       </div>

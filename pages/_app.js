@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/globals.css'
 import { useRouter } from "next/router";
 import Link from 'next/link'
+import Image from 'next/image';
 
 function MyApp({ Component, pageProps }) {
   const { pathname } = useRouter();
@@ -22,7 +23,7 @@ function MyApp({ Component, pageProps }) {
                 <>
                   <Link href="/presensi">
                     <div className="flex items-center justify-center flex-col cursor-pointer">
-                      <img className="w-[3rem] h-[3rem]" src="/images/presensiLight.svg" alt="" />
+                      <Image width={40} height={40} src="/images/presensiLight.svg" alt="" />
                       <div className="font-semibold text-dark-blue">Presensi</div>
                     </div>
                   </Link>
@@ -31,7 +32,7 @@ function MyApp({ Component, pageProps }) {
                 <>
                   <Link href="/presensi">
                     <div className="flex items-center justify-center flex-col cursor-pointer">
-                      <img className="w-[3rem] h-[3rem]" src="/images/presensiDark.svg" alt="" />
+                      <Image width={40} height={40} src="/images/presensiDark.svg" alt="" />
                       <div className="text-[#CCCCCC]">Presensi</div>
                     </div>
                   </Link>
@@ -43,7 +44,7 @@ function MyApp({ Component, pageProps }) {
                 <>
                   <Link href="/pengajuan">
                     <div className="flex items-center justify-center flex-col cursor-pointer">
-                      <img className="w-[3rem] h-[3rem]" src="/images/pengajuanLight.svg" alt="" />
+                      <Image width={40} height={40} src="/images/pengajuanLight.svg" alt="" />
                       <div className="font-semibold text-dark-blue">Pengajuan</div>
                     </div>
                   </Link>
@@ -52,7 +53,7 @@ function MyApp({ Component, pageProps }) {
                 <>
                   <Link href="/pengajuan">
                     <div className='flex flex-col items-center justify-center cursor-pointer'>
-                      <img className="w-[3rem] h-[3rem]" src="/images/pengajuanDark.svg" alt="" />
+                      <Image width={40} height={40} src="/images/pengajuanDark.svg" alt="" />
                       <div className="text-[#CCCCCC]">Pengajuan</div>
                     </div>
                   </Link>
@@ -64,7 +65,7 @@ function MyApp({ Component, pageProps }) {
                 <>
                   <Link href="/laporan">
                     <div className="flex items-center justify-center flex-col cursor-pointer">
-                      <img className="w-[3rem] h-[3rem]" src="/images/laporanLight.svg" alt="" />
+                      <Image width={40} height={40} src="/images/laporanLight.svg" alt="" />
                       <div className="font-semibold text-dark-blue">Laporan</div>
                     </div>
                   </Link>
@@ -73,7 +74,7 @@ function MyApp({ Component, pageProps }) {
                 <>
                   <Link href="/laporan">
                     <div className="flex items-center justify-center flex-col cursor-pointer">
-                      <img className="w-[3rem] h-[3rem]" src="/images/laporanDark.svg" alt="" />
+                      <Image width={40} height={40} src="/images/laporanDark.svg" alt="" />
                       <div className="text-[#CCCCCC]">Laporan</div>
                     </div>
                   </Link>
@@ -85,7 +86,7 @@ function MyApp({ Component, pageProps }) {
                 <>
                   <Link href="/akun">
                     <div className="flex items-center justify-center flex-col cursor-pointer">
-                      <img className="w-[2rem] h-[2rem]" src="/images/akunLight.svg" alt="" />
+                      <Image width={30} height={30} src="/images/akunLight.svg" alt="" />
                       <div className="font-semibold text-dark-blue">Akun</div>
                     </div>
                   </Link>
@@ -94,7 +95,7 @@ function MyApp({ Component, pageProps }) {
                 <>
                   <Link href="/akun">
                     <div className="flex items-center justify-center flex-col cursor-pointer">
-                      <img className="w-[3rem] h-[3rem]" src="/images/akunDark.svg" alt="" />
+                      <Image width={40} height={40} src="/images/akunDark.svg" alt="" />
                       <div className="text-[#CCCCCC]">Akun</div>
                     </div>
                   </Link>

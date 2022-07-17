@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 function DPMK() {
   const router = useRouter();
@@ -7,14 +8,14 @@ function DPMK() {
     <div className="h-screen">
       <div className="p-5 flex w-full justify-between items-center bg-gray">
         <div className="flex items-center gap-5">
-          <img onClick={() => router.back()} className="cursor-pointer" src="/images/back.svg" alt="" />
+          <Image width={25} height={25} onClick={() => router.back()} className="cursor-pointer" src="/images/back.svg" alt="" />
           <div>
             <div className="text-dark-blue font-bold">Rincian DPMK</div>
             <div className="text-[#808080]">Dana Pensiun Mitra Krakatau</div>
           </div>
         </div>
         <div>
-          <img src="/images/question.svg" alt="" />
+          <Image width={25} height={25} src="/images/question.svg" alt="" />
         </div>
       </div>
       <div className="p-5">
