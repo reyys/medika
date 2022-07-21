@@ -60,8 +60,8 @@ function Index() {
   return (
     <div className="w-full pb-24">
       <div className="p-5">
-        <div className="font-bold">Pengajuan</div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+        <div className="font-bold text-[1.25rem]">Pengajuan</div>
+        <div>Silahkan gunakan formulir berikut untuk mengajukan fasilitas waktu kerja anda</div>
       </div>
       <div className="p-5 bg-gray">
         <div className="flex w-full justify-between">
@@ -87,7 +87,7 @@ function Index() {
       </div>
       <div className="mt-2 p-5 bg-gray pb-24">
         <div className="font-bold text-dark-blue text-[1.1rem]">Riwayat Pengajuan</div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+        <div>Berikut ini adalah beberapa daftar pengajuan fasilitas waktu kerja anda</div>
         <div onClick={(e) => clickHandler(e)} id="izin" className="cursor-pointer font-semibold border-b-[1px] py-5 border-light-gray w-full relative z-50 mt-5 rounded-md">
           Data Riwayat Izin
           <div className="absolute right-[3%] top-[50%] translate-y-[-50%]">

@@ -7,7 +7,7 @@ function index() {
     <div>
       <div className="p-5">
         <div className="text-[1.25rem] font-bold">Akun</div>
-        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+        <div>Data profil dan info pendukung personalia anda</div>
       </div>
       <div className="p-5 bg-gray">
         <div className="font-semibold mb-4">Profil Karyawan</div>

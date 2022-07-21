@@ -121,7 +121,7 @@ function Index({ presensi, setPresensi }) {
 
   return (
     <div>
-      <div className={` ${presensi === true ? "block" : "hidden"} absolute top-0 left-0 bottom-0 right-0 w-full h-full z-50`} style={{ background: "rgba(0,0,0,0.4)" }}></div>
+      <div onClick={() => setPresensi(false)} className={` ${presensi === true ? "block" : "hidden"} absolute top-0 left-0 bottom-0 right-0 w-full h-full z-50`} style={{ background: "rgba(0,0,0,0.4)" }}></div>
       <div className={`${presensi === true ? "block" : "hidden"} absolute z-[100] top-[50%] left-[50%] flex flex-col justify-center items-center gap-5`} style={{ transform: "translate(-50%,-50%)" }}>
         <video muted ref={videoRef}></video>
         <canvas className="absolute" ref={canvasRef}></canvas>
